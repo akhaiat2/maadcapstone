@@ -1,5 +1,6 @@
 import React from 'react'
 import Plot from 'react-plotly.js';
+
 let StockTicker = 'IBM'
 class Stock extends React.Component {
     constructor(props) {
@@ -9,7 +10,6 @@ class Stock extends React.Component {
             stockChartYValues: []
         }
     }
-
     componentDidMount() {
         this.fetchStock()
     }
@@ -45,7 +45,7 @@ class Stock extends React.Component {
     render() {
         return(
             <div>
-                <h1>Stock Market</h1>
+                <h1>MAAD Capstone Project</h1>
                 <Plot
                 data={[
                   {
@@ -56,7 +56,7 @@ class Stock extends React.Component {
                     marker: {color: 'blue'},
                   }
                 ]}
-                layout={ {width: 1920, height: 1080, title: `${StockTicker}`} }
+                layout={ {width: 500, height: 500, title: `${StockTicker}`} }
                 />
                 </div>
         )
