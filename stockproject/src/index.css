@@ -55,19 +55,29 @@ body {
 }
 
 .clock {
-    width: 9%;
+    width: 8.5%;
     position: relative;
-    left: 85%;
-    top: 13%;
+    left: 85.5%;
+    top: 12.5%;
     background-color: white;
-    font-size: 30px;
+    font-size: 150%;
+    font-family: 'Courier New', Courier, monospace;
 }
 h2 {
     font-size: 60px;
-    color: grey;
+    color: rgb(50,50,50);
     position: relative;
     margin: auto;
     width: 1%;
 }
-
-
+form {
+    font-size: 150%;
+    position: absolute;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    left: 6.5%;
+}
+input {
+    font-size: 150%;
+    font-family: 'Courier New', Courier, monospace;
+}

@@ -1,17 +1,31 @@
 import React from 'react'
 import Sketch from 'react-p5';
+import './index.css';
+import sound from "./assets/newyork.mp3"
 
-let StockTicker = 'IBM'
 class Stock extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             stockChartXValues: [],
             stockChartYValues: [],
-            ticker: ''
+            value: 'IBM'
         }
     }
 
+    play = () => {
+        new Audio(sound).play()
+    }
+
+    handleChange = (event) => {
+        this.setState({value: event.target.value});
+    }
+    
+    handleSubmit = (event) => {
+        alert('A stock ticker was submitted: $' + this.state.value);
+        this.setState({value: event.target.value});
+        event.preventDefault();
+      }
     componentDidMount() {
         //this.fetchStock()
     }
@@ -19,6 +33,7 @@ class Stock extends React.Component {
     fetchStock() {
         const objectThis = this
         const API_KEY = 'Z74L00X1VCAQJGM2'
+        let StockTicker = this.state.value
         let API_CALL = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockTicker}&apikey=${API_KEY}`
         let stockChartXValuesFunction = []
         let stockChartYValuesFunction = []
@@ -38,7 +53,7 @@ class Stock extends React.Component {
                         stockChartXValues: stockChartXValuesFunction,
                         stockChartYValues: stockChartYValuesFunction
                     })
-                    //console.log(data)
+                    console.log(data)
                 }
             )
     }
@@ -51,8 +66,6 @@ class Stock extends React.Component {
 	draw = (p5) => {
         p5.background(30);
         this.state.stockChartYValues = [120, 130, 140, 150, 140]
-        let stockChartYValuesOne = [240,340,180,50,280]
-        let stockChartYValuesTwo = [10,50,30,100,3]
         for (let i = 0; i < this.state.stockChartYValues.length; i++) {
             if(i>0) {
                 p5.stroke(0)
@@ -81,62 +94,18 @@ class Stock extends React.Component {
                 p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]* Math.random()*3, 20, 20);
             }      
         }
-        //for (let i = 0; i < stockChartYValuesOne.length; i++) {
-        //    if(i>0) {
-        //        p5.stroke(0)
-        //        if (stockChartYValuesOne[i] > stockChartYValuesOne[i-1]) {
-        //            p5.fill(255, 0, 0)
-        //            p5.strokeWeight(1)
-        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 20);
-        //        }
-        //        else if (stockChartYValuesOne[i] < stockChartYValuesOne[i-1]) {
-        //            p5.fill(0, 255, 0)
-        //            p5.strokeWeight(1)
-        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 20);
-        //        }
-        //        else {
-        //            p5.fill(0, 0, 255)
-        //            p5.strokeWeight(1)
-        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 20);
-        //        }
-        //        p5.stroke(Math.random()*255, Math.random()*255, Math.random()*255)
-        //        p5.strokeWeight(5)
-        //        p5.line(i+(Math.random()*700), stockChartYValuesOne[i], (i-1)+(Math.random()*700), stockChartYValuesOne[i-1])
-        //    }
-        //    else {
-        //        p5.fill(255, 0, 0)
-        //        p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 10); 
-        //    }        
-        //}
-        //for (let i = 0; i < stockChartYValuesTwo.length; i++) {
-        //    if(i>0) {
-        //        p5.stroke(0)
-        //        if (stockChartYValuesTwo[i] > stockChartYValuesTwo[i-1]) {
-        //            p5.fill(255, 0, 0)
-        //            p5.strokeWeight(1)
-        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 20, 20);
-        //        }
-        //        else if (stockChartYValuesTwo[i] < stockChartYValuesTwo[i-1]) {
-        //            p5.fill(0, 255, 0)
-        //            p5.strokeWeight(1)
-        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 20, 20);
-        //        }
-        //        else {
-        //            p5.fill(0, 0, 255)
-        //            p5.strokeWeight(1)
-        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 20, 20);
-        //        }
-        //    }
-        //    else {
-        //        p5.fill(255, 0, 0)
-        //        p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 10, 20); 
-        //    }       
-        //}
 	};
     
     render() {
         return(
             <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                    Ticker:
+                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    </label>
+                    <input onClick={this.play} type="submit" value="Submit" />
+                </form>
                 <Sketch setup={this.setup} draw={this.draw} />
             </div>
         )
