@@ -104,7 +104,7 @@ class Stock extends React.Component {
                     Ticker:
                         <input type="text" value={this.state.value} onChange={this.handleChange} />
                     </label>
-                    <input onClick={this.play} type="submit" value="Submit" />
+                    <input onClick={this.play} type="submit" value="Order" />
                 </form>
                 <Sketch setup={this.setup} draw={this.draw} />
             </div>
