@@ -1,5 +1,4 @@
 import React from 'react'
-import Plot from 'react-plotly.js';
 import Sketch from 'react-p5';
 
 let StockTicker = 'IBM'
@@ -8,12 +7,13 @@ class Stock extends React.Component {
         super(props)
         this.state = {
             stockChartXValues: [],
-            stockChartYValues: []
+            stockChartYValues: [],
+            ticker: ''
         }
     }
 
     componentDidMount() {
-        this.fetchStock()
+        //this.fetchStock()
     }
 
     fetchStock() {
@@ -38,51 +38,107 @@ class Stock extends React.Component {
                         stockChartXValues: stockChartXValuesFunction,
                         stockChartYValues: stockChartYValuesFunction
                     })
-                    console.log(data)
+                    //console.log(data)
                 }
             )
     }
-    y = 0;
-	direction = '^';
 
 	setup = (p5, parentRef) => {
-		p5.createCanvas(900, 500).parent(parentRef);
-	};
-    
-	draw = (p5) => {
-        p5.background(0);
-        //console.log(this.state.stockChartYValues)
-        for (let i = 0; i < this.state.stockChartYValues.length; i ++) {
-            p5.fill(255, 255, 0);
-            p5.ellipse(i, this.state.stockChartYValues[i], 50, 50);
-        }
-		//p5.ellipse(p5.width / 2, this.y, 50);
-		//if (this.y > p5.height) this.direction = '';
-		//if (this.y < 0) {
-		//	this.direction = '^';
-		//}
-		//if (this.direction === '^') this.y += 8;
-		//else this.y -= 4;
+		p5.createCanvas(1200, 380).parent(parentRef);
+        p5.frameRate(7)
 	};
 
+	draw = (p5) => {
+        p5.background(30);
+        this.state.stockChartYValues = [120, 130, 140, 150, 140]
+        let stockChartYValuesOne = [240,340,180,50,280]
+        let stockChartYValuesTwo = [10,50,30,100,3]
+        for (let i = 0; i < this.state.stockChartYValues.length; i++) {
+            if(i>0) {
+                p5.stroke(0)
+                if (this.state.stockChartYValues[i] > this.state.stockChartYValues[i-1]) {
+                    p5.fill(255, 0, 0)
+                    p5.strokeWeight(1)
+                    p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*3, 20, 20);
+                }
+                else if (this.state.stockChartYValues[i] < this.state.stockChartYValues[i-1]) {
+                    p5.fill(0, 255, 0)
+                    p5.strokeWeight(1)
+                    p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i], 20, 20);
+                }
+                else {
+                    p5.fill(0, 0, 255)
+                    p5.strokeWeight(1)
+                    p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*3, 20, 20);
+                }
+                p5.stroke(Math.random()*255, Math.random()*255, Math.random()*255)
+                p5.strokeWeight(5)
+                p5.line(i+(Math.random()*700), this.state.stockChartYValues[i], (i-1)+(Math.random()*700), this.state.stockChartYValues[i-1])
+            }
+            else {
+                p5.strokeWeight(1)
+                p5.fill(255, 0, 0)
+                p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]* Math.random()*3, 20, 20);
+            }      
+        }
+        //for (let i = 0; i < stockChartYValuesOne.length; i++) {
+        //    if(i>0) {
+        //        p5.stroke(0)
+        //        if (stockChartYValuesOne[i] > stockChartYValuesOne[i-1]) {
+        //            p5.fill(255, 0, 0)
+        //            p5.strokeWeight(1)
+        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 20);
+        //        }
+        //        else if (stockChartYValuesOne[i] < stockChartYValuesOne[i-1]) {
+        //            p5.fill(0, 255, 0)
+        //            p5.strokeWeight(1)
+        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 20);
+        //        }
+        //        else {
+        //            p5.fill(0, 0, 255)
+        //            p5.strokeWeight(1)
+        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 20);
+        //        }
+        //        p5.stroke(Math.random()*255, Math.random()*255, Math.random()*255)
+        //        p5.strokeWeight(5)
+        //        p5.line(i+(Math.random()*700), stockChartYValuesOne[i], (i-1)+(Math.random()*700), stockChartYValuesOne[i-1])
+        //    }
+        //    else {
+        //        p5.fill(255, 0, 0)
+        //        p5.ellipse(i+(Math.random()*1000), stockChartYValuesOne[i], 20, 10); 
+        //    }        
+        //}
+        //for (let i = 0; i < stockChartYValuesTwo.length; i++) {
+        //    if(i>0) {
+        //        p5.stroke(0)
+        //        if (stockChartYValuesTwo[i] > stockChartYValuesTwo[i-1]) {
+        //            p5.fill(255, 0, 0)
+        //            p5.strokeWeight(1)
+        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 20, 20);
+        //        }
+        //        else if (stockChartYValuesTwo[i] < stockChartYValuesTwo[i-1]) {
+        //            p5.fill(0, 255, 0)
+        //            p5.strokeWeight(1)
+        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 20, 20);
+        //        }
+        //        else {
+        //            p5.fill(0, 0, 255)
+        //            p5.strokeWeight(1)
+        //            p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 20, 20);
+        //        }
+        //    }
+        //    else {
+        //        p5.fill(255, 0, 0)
+        //        p5.ellipse(i+(Math.random()*1000), stockChartYValuesTwo[i], 10, 20); 
+        //    }       
+        //}
+	};
+    
     render() {
         return(
             <div>
-                <h1>MAAD Capstone Project</h1>
-                <Plot
-                data={[
-                  {
-                    x: this.state.stockChartXValues,
-                    y: this.state.stockChartYValues,
-                    type: 'scatter',
-                    mode: 'lines+markers',
-                    marker: {color: 'blue'},
-                  }
-                ]}
-                layout={ {width: 300, height: 300, title: `${StockTicker}`} }
-                />
                 <Sketch setup={this.setup} draw={this.draw} />
-                </div>
+            </div>
         )
     }
 }
