@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.902aa9f1.css",
-    "main.js": "/static/js/main.6f7c81b5.js",
-    "static/js/787.4612e70f.chunk.js": "/static/js/787.4612e70f.chunk.js",
-    "static/media/newyork.mp3": "/static/media/newyork.2e6fe290d789c480ea06.mp3",
-    "index.html": "/index.html",
-    "main.902aa9f1.css.map": "/static/css/main.902aa9f1.css.map",
-    "main.6f7c81b5.js.map": "/static/js/main.6f7c81b5.js.map",
-    "787.4612e70f.chunk.js.map": "/static/js/787.4612e70f.chunk.js.map"
+    "main.css": "/maadcapstone/static/css/main.902aa9f1.css",
+    "main.js": "/maadcapstone/static/js/main.2060deac.js",
+    "static/js/787.4612e70f.chunk.js": "/maadcapstone/static/js/787.4612e70f.chunk.js",
+    "static/media/newyork.mp3": "/maadcapstone/static/media/newyork.2e6fe290d789c480ea06.mp3",
+    "index.html": "/maadcapstone/index.html",
+    "main.902aa9f1.css.map": "/maadcapstone/static/css/main.902aa9f1.css.map",
+    "main.2060deac.js.map": "/maadcapstone/static/js/main.2060deac.js.map",
+    "787.4612e70f.chunk.js.map": "/maadcapstone/static/js/787.4612e70f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.902aa9f1.css",
-    "static/js/main.6f7c81b5.js"
+    "static/js/main.2060deac.js"
   ]
 }
