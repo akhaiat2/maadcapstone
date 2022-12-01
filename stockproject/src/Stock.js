@@ -25,11 +25,11 @@ class Stock extends React.Component {
     
     handleSubmit = (event) => {
         alert('A stock ticker was submitted: $' + this.state.value);
-        this.fetchStock()
+        //this.fetchStock()
         event.preventDefault();
       }
     componentDidMount() {
-        this.fetchStock()
+        //this.fetchStock()
     }
 
     fetchStock() {
@@ -66,9 +66,9 @@ class Stock extends React.Component {
 
 	draw = (p5) => {
         p5.background(30);
-        //this.state.stockChartYValues = [120, 130, 140, 150, 140]
+        this.state.stockChartYValues = [120, 130, 140, 150, 140]
         for (let i = 0; i < this.state.stockChartYValues.length; i++) {
-            if(i>0) {
+            if(i>1) {
                 p5.stroke(0)
                 if (this.state.stockChartYValues[i] > this.state.stockChartYValues[i-1]) {
                     p5.fill(255, 0, 0)
@@ -87,7 +87,8 @@ class Stock extends React.Component {
                 }
                 p5.stroke(Math.random()*255, Math.random()*255, Math.random()*255)
                 p5.strokeWeight(5)
-                p5.line(i+(Math.random()*700), this.state.stockChartYValues[i]+(Math.random()*300), (i-1)+(Math.random()*700), this.state.stockChartYValues[i-1])
+                p5.line(i+(Math.random()*1000), this.state.stockChartYValues[i]+(Math.random()*100), (i-1)+(Math.random()*1000), this.state.stockChartYValues[i-1]+(Math.random()*100))
+                p5.triangle(i+(Math.random()*1000), this.state.stockChartYValues[i]+(Math.random()*100), (i-1)+(Math.random()*1000), this.state.stockChartYValues[i-1]+(Math.random()*100), (i-2)+(Math.random()*1000), this.state.stockChartYValues[i-2]+(Math.random()*100))
             }
             else {
                 p5.strokeWeight(1)
