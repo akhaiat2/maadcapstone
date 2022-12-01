@@ -25,11 +25,11 @@ class Stock extends React.Component {
     
     handleSubmit = (event) => {
         alert('A stock ticker was submitted: $' + this.state.value);
-        //this.fetchStock()
+        this.fetchStock()
         event.preventDefault();
-      }
+    }
     componentDidMount() {
-        //this.fetchStock()
+        this.fetchStock()
     }
 
     fetchStock() {
