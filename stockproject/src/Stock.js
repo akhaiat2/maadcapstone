@@ -9,8 +9,10 @@ class Stock extends React.Component {
         this.state = {
             stockChartXValues: [],
             stockChartYValues: [],
-            value: 'IBM'
+            value: `IBM`
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     play = () => {
@@ -23,18 +25,17 @@ class Stock extends React.Component {
     
     handleSubmit = (event) => {
         alert('A stock ticker was submitted: $' + this.state.value);
-        this.setState({value: event.target.value});
+        this.fetchStock()
         event.preventDefault();
       }
     componentDidMount() {
-        //this.fetchStock()
+        this.fetchStock()
     }
 
     fetchStock() {
         const objectThis = this
         const API_KEY = 'Z74L00X1VCAQJGM2'
-        let StockTicker = this.state.value
-        let API_CALL = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockTicker}&apikey=${API_KEY}`
+        let API_CALL = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.value}&apikey=${API_KEY}`
         let stockChartXValuesFunction = []
         let stockChartYValuesFunction = []
         fetch(API_CALL)
@@ -65,14 +66,14 @@ class Stock extends React.Component {
 
 	draw = (p5) => {
         p5.background(30);
-        this.state.stockChartYValues = [120, 130, 140, 150, 140]
+        //this.state.stockChartYValues = [120, 130, 140, 150, 140]
         for (let i = 0; i < this.state.stockChartYValues.length; i++) {
             if(i>0) {
                 p5.stroke(0)
                 if (this.state.stockChartYValues[i] > this.state.stockChartYValues[i-1]) {
                     p5.fill(255, 0, 0)
                     p5.strokeWeight(1)
-                    p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*3, 20, 20);
+                    p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*5, 20, 20);
                 }
                 else if (this.state.stockChartYValues[i] < this.state.stockChartYValues[i-1]) {
                     p5.fill(0, 255, 0)
@@ -82,16 +83,16 @@ class Stock extends React.Component {
                 else {
                     p5.fill(0, 0, 255)
                     p5.strokeWeight(1)
-                    p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*3, 20, 20);
+                    p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*5, 20, 20);
                 }
                 p5.stroke(Math.random()*255, Math.random()*255, Math.random()*255)
                 p5.strokeWeight(5)
-                p5.line(i+(Math.random()*700), this.state.stockChartYValues[i], (i-1)+(Math.random()*700), this.state.stockChartYValues[i-1])
+                p5.line(i+(Math.random()*700), this.state.stockChartYValues[i]+(Math.random()*300), (i-1)+(Math.random()*700), this.state.stockChartYValues[i-1])
             }
             else {
                 p5.strokeWeight(1)
                 p5.fill(255, 0, 0)
-                p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]* Math.random()*3, 20, 20);
+                p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*5, 20, 20);
             }      
         }
 	};
