@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sketch from 'react-p5';
 import './index.css';
 import sound from "./assets/newyork.mp3"
+import companyLogo from './assets/meta.jpg';
 
 class Stock extends React.Component {
     constructor(props) {
@@ -9,15 +10,17 @@ class Stock extends React.Component {
         this.state = {
             stockChartXValues: [],
             stockChartYValues: [],
-            value: `IBM`
+            value: `IBM`,
         }
-        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     play = () => {
         new Audio(sound).play()
     }
+    
+    handleClick = (event) => event.target.classList.remove('black-box');
 
     handleChange = (event) => {
         this.setState({value: event.target.value});
@@ -60,23 +63,23 @@ class Stock extends React.Component {
     }
 
 	setup = (p5, parentRef) => {
-		p5.createCanvas(1200, 700).parent(parentRef);
+		p5.createCanvas(1200, 380).parent(parentRef);
         p5.frameRate(7)
 	};
 
 	draw = (p5) => {
         p5.background(30);
-        this.state.stockChartYValues = [120, 130, 140, 150, 140]
+        //this.state.stockChartYValues = [120, 130, 140, 150, 140]
         for (let i = 0; i < this.state.stockChartYValues.length; i++) {
             if(i>1) {
                 p5.stroke(0)
                 if (this.state.stockChartYValues[i] > this.state.stockChartYValues[i-1]) {
-                    p5.fill(255, 0, 0)
+                    p5.fill(0, 255, 0)
                     p5.strokeWeight(1)
                     p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i]*Math.random()*5, 20, 20);
                 }
                 else if (this.state.stockChartYValues[i] < this.state.stockChartYValues[i-1]) {
-                    p5.fill(0, 255, 0)
+                    p5.fill(255, 0, 0)
                     p5.strokeWeight(1)
                     p5.ellipse(i+(Math.random()*1000), this.state.stockChartYValues[i], 20, 20);
                 }
@@ -87,8 +90,12 @@ class Stock extends React.Component {
                 }
                 p5.stroke(Math.random()*255, Math.random()*255, Math.random()*255)
                 p5.strokeWeight(5)
-                p5.line(i+(Math.random()*1000), this.state.stockChartYValues[i]+(Math.random()*100), (i-1)+(Math.random()*1000), this.state.stockChartYValues[i-1]+(Math.random()*100))
-                p5.triangle(i+(Math.random()*1000), this.state.stockChartYValues[i]+(Math.random()*100), (i-1)+(Math.random()*1000), this.state.stockChartYValues[i-1]+(Math.random()*100), (i-2)+(Math.random()*1000), this.state.stockChartYValues[i-2]+(Math.random()*100))
+                if (Math.round(Math.random()*15) === 1) {
+                    p5.line(i+(Math.random()*1000), this.state.stockChartYValues[i]* Math.random()*5, (i-1)+(Math.random()*1000), this.state.stockChartYValues[i-1]*Math.random()*5)
+                }
+                else if (Math.round(Math.random()*15) === 2) {
+                    p5.triangle(i+(Math.random()*1000), this.state.stockChartYValues[i]* Math.random()*5, (i-1)+(Math.random()*1000), this.state.stockChartYValues[i-1]*Math.random()*5, (i-2)+(Math.random()*1000), this.state.stockChartYValues[i-2]*Math.random()*5)
+                }
             }
             else {
                 p5.strokeWeight(1)
@@ -109,6 +116,22 @@ class Stock extends React.Component {
                     <input onClick={this.play} type="submit" value="Order" />
                 </form>
                 <Sketch setup={this.setup} draw={this.draw} />
+                <div class="black-box">
+                    <img src={companyLogo} alt="bank logo" class="center"/>
+                    <h1 id="banktext">Welcome to Meta Bank</h1>
+                    <div className="input-container">
+                        <label>Username </label>
+                        <input type="text" name="uname" required />
+                    </div>
+                    <div className="input-container">
+                        <label>Password </label>
+                        <input type="password" name="pass" required />
+                    </div>
+                    <div className="button-container">
+                        <input onClick={this.handleClick} type="submit" />
+                    </div>
+                </div>
+
             </div>
         )
     }

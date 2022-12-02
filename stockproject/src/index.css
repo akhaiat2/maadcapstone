@@ -80,3 +80,82 @@ input {
     font-size: 150%;
     font-family: 'Courier New', Courier, monospace;
 }
+#banktext {
+    color: white;
+    font-size: 80px;
+    text-align: center;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+  }
+
+  .black-box {
+    width: 1202px;
+    height: 800px;
+    position: absolute;
+    top: 50px;
+    z-index: 3;
+    left: 6.2%;
+    background-color: rgb(30,30,30);
+    color: black;
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 40px;
+  width: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: left;
+  margin: auto;
+}
+
+label {
+    color: white;
+    font-size: 40px;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 40px;
+  background: #01d28e;
+  border: 1px solid #01d28e;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background: #6cf0c2;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-container {
+  display: flex;
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+}
+
