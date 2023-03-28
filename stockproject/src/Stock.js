@@ -63,7 +63,7 @@ class Stock extends React.Component {
     }
 
 	setup = (p5, parentRef) => {
-		p5.createCanvas(1200, 380).parent(parentRef);
+		p5.createCanvas(1200, 750).parent(parentRef);
         p5.frameRate(7)
 	};
 
