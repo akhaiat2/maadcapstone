@@ -2,6 +2,7 @@ import React from 'react'
 import Stock from './Stock'
 import './App.css'
 import ReactDOM from 'react-dom';
+import AudioPlayer from './AudioPlayer';
 
 class App extends React.Component {
     
@@ -9,10 +10,11 @@ class App extends React.Component {
 		return (
 			<div className="App">
                 <Stock></Stock>
+                <AudioPlayer />
 			</div>
 		);
 	}
 }
-const rootElement = document.getElementById('root');
-ReactDOM.render(<App />, rootElement);
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
 export default App
