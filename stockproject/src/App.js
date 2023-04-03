@@ -2,19 +2,14 @@ import React from 'react'
 import Stock from './Stock'
 import './App.css'
 import ReactDOM from 'react-dom';
-import AudioPlayer from './AudioPlayer';
+import AudioPlayer from './AudioPlayer'
 
 class App extends React.Component {
-    
-    render() {
+    render () {
 		return (
-            <div>
-                <div className="App">
-                    <Stock></Stock>
-                </div>
-                <div>
-                    <AudioPlayer />
-                </div>
+            <div className="App">
+                <Stock></Stock>
+                <AudioPlayer />
             </div>
 		)
 	}
