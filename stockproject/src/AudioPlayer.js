@@ -4,7 +4,7 @@ class AudioPlayer extends React.Component {
   render() {
     return (
       <audio autoPlay loop>
-        <source src='background.mp3' type='audio/mpeg' />
+        <source src='stockproject/src/assets/background.mp3' type='audio/mpeg' />
       </audio>
     );
   }
