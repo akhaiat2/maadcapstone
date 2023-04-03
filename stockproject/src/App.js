@@ -8,11 +8,15 @@ class App extends React.Component {
     
     render() {
 		return (
-			<div className="App">
-                <Stock></Stock>
-                <AudioPlayer />
-			</div>
-		);
+            <div>
+                <div className="App">
+                    <Stock></Stock>
+                </div>
+                <div>
+                    <AudioPlayer />
+                </div>
+            </div>
+		)
 	}
 }
 const rootElement = document.getElementById('root')
