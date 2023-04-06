@@ -20,8 +20,6 @@ class Stock extends React.Component {
         new Audio(sound).play()
     }
     
-    handleClick = (event) => event.target.classList.remove('black-box');
-
     handleChange = (event) => {
         this.setState({value: event.target.value});
     }
@@ -116,7 +114,6 @@ class Stock extends React.Component {
                     <input onClick={this.play} type="submit" value="Order" />
                 </form>
                 <Sketch setup={this.setup} draw={this.draw} />
-                <div class="black-box">
                     <img src={companyLogo} alt="bank logo" class="center"/>
                     <h1 id="banktext">Welcome to Meta Bank</h1>
                     <div className="input-container">
