@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Sketch from 'react-p5';
 import './index.css';
 import sound from "./assets/newyork.mp3"
-import companyLogo from './assets/meta.jpg';
+import companyLogo from './assets/meta.jpg'
 
 class Stock extends React.Component {
     constructor(props) {
@@ -12,8 +12,8 @@ class Stock extends React.Component {
             stockChartYValues: [],
             value: `IBM`,
         }
-        this.handleClick = this.handleClick.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleClick = this.handleClick.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     play = () => {
@@ -61,8 +61,8 @@ class Stock extends React.Component {
     }
 
 	setup = (p5, parentRef) => {
-		p5.createCanvas(1200, 750).parent(parentRef);
-        p5.frameRate(7)
+		p5.createCanvas(1200, 400).parent(parentRef)
+        p5.frameRate(3)
 	};
 
 	draw = (p5) => {
@@ -114,21 +114,6 @@ class Stock extends React.Component {
                     <input onClick={this.play} type="submit" value="Order" />
                 </form>
                 <Sketch setup={this.setup} draw={this.draw} />
-                    <img src={companyLogo} alt="bank logo" class="center"/>
-                    <h1 id="banktext">Welcome to Meta Bank</h1>
-                    <div className="input-container">
-                        <label>Username </label>
-                        <input type="text" name="uname" required />
-                    </div>
-                    <div className="input-container">
-                        <label>Password </label>
-                        <input type="password" name="pass" required />
-                    </div>
-                    <div className="button-container">
-                        <input onClick={this.handleClick} type="submit" />
-                    </div>
-                </div>
-
             </div>
         )
     }

@@ -2,7 +2,6 @@ import React from 'react'
 import Stock from './Stock'
 import './App.css'
 import ReactDOM from 'react-dom'
-import audioFile from './background.mp3'
 
 class App extends React.Component {
   render () {
