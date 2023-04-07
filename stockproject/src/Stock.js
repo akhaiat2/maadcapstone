@@ -67,7 +67,6 @@ class Stock extends React.Component {
 
 	draw = (p5) => {
         p5.background(30);
-        //this.state.stockChartYValues = [120, 130, 140, 150, 140]
         for (let i = 0; i < this.state.stockChartYValues.length; i++) {
             if(i>1) {
                 p5.stroke(0)
