@@ -12,7 +12,7 @@ class Stock extends React.Component {
             stockChartYValues: [],
             value: `IBM`,
         }
-        //this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
