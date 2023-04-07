@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Sketch from 'react-p5';
 import './index.css';
 import sound from "./assets/newyork.mp3"
-import companyLogo from './assets/meta.jpg'
+//import companyLogo from './assets/meta.jpg'
 
 class Stock extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Stock extends React.Component {
             value: `IBM`,
         }
         this.handleClick = this.handleClick.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        //this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     play = () => {
